@@ -2,7 +2,7 @@
 
 ## install guide ##
 
-1. clone or download the code to your proxmox ve. `git clone https://github.com/ivanhao/omv3.x-themes-blue.git`
+1. clone or download the code to your proxmox ve. `git clone https://github.com/ivanhao/OmvInPve.git`
 2. cd to the path
 3. execute the `chmod +x ./*.sh` command to make it have right permission to execute the install or uninstall.
 4. `./OmvInPve.sh` to install theme.
@@ -23,7 +23,7 @@ rollback your zfs rpool's snapshot and reboot.
 ## 安装说明 ##
 #### 感谢“proxmox研究”群的  灬心海ζ丶 提供的安装方式，我只是在他的基础上整理了一键安装的脚本。
 
-1. clone或下载安装包到proxmox ve里，例如在/root目录运行：`git clone https://github.com/ivanhao/omv3.x-themes-blue.git`。
+1. clone或下载安装包到proxmox ve里，例如在/root目录运行：`git clone https://github.com/ivanhao/OmvInPve.git`。
 2. 命令行cd到安装包的路径里。
 3. 执行`chmod +x ./*.sh`来让程序有执行的权限。
 4. `./OmvInPve.sh`来安装，根据提示很快就完成了。然后刷新界面。
