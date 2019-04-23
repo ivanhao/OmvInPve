@@ -7,7 +7,7 @@
 3. execute the `chmod +x ./*.sh` command to make it have right permission to execute the install or uninstall.
 4. `./OmvInPve.sh` to install theme.
 > Don't forget to make a snapshot for rpool before run it.
-you must run script use root.
+> you must run script use root.
 
 ## uninstall guide ##
 `apt-get autoremove openmediavault`
@@ -25,8 +25,8 @@ rollback your zfs rpool's snapshot and reboot.
 2. 命令行cd到安装包的路径里。
 3. 执行`chmod +x ./*.sh`来让程序有执行的权限。
 4. `./OmvInPve.sh`来安装，根据提示很快就完成了。然后刷新界面。
->不要忘记执行前给rpool做个快照，以便恢复快照。
-需要用root账号来运行
+> 不要忘记执行前给rpool做个快照，以便恢复快照。
+> 需要用root账号来运行
 
 ## 卸载 ##
 
