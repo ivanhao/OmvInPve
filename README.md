@@ -36,4 +36,5 @@ rollback your zfs rpool's snapshot and reboot.
 或者
 回滚你的rpool快照，重启。
 
-
+##  Preview 预览 ##
+![preview](./preview.png)
