@@ -101,6 +101,8 @@ while [ true ]
 		  quota php-xml quotatool liblocale-po-perl proftpd-mod-vroot libjavascript-minifier-xs-perl xmlstarlet parted \
 		  nginx pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq ntp python3-netifaces python3-lxml resolvconf
 	else
+		echo "你的proxmox ve版本不是5.3/5.4，不建议安装，即将退出。"
+		echo "Your proxmox ve version is not 5.3/5.4, it may harm your system, now quit."
 		break
 	fi
 	rm ./openmediavault_4*.deb
