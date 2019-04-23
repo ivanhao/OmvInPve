@@ -39,3 +39,10 @@ rollback your zfs rpool's snapshot and reboot.
 
 ##  Preview 预览 ##
 ![preview](./preview.png)
+
+> 如果用OMV共享pve的rpool，需要设置acl权限：
+```
+zfs set aclinherit=passthrough rpool
+zfs set acltype=posixacl rpool
+```
+
