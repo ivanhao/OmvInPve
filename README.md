@@ -8,7 +8,7 @@
 4. `./OmvInPve.sh` to install theme.
 > Don't forget to make a snapshot for rpool before run it.
 
-> you must run script use root.
+> you must run this script as `root`.
 
 ## uninstall guide ##
 `apt-get autoremove openmediavault`
