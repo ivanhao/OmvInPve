@@ -117,6 +117,7 @@ while [ true ]
 	rm ./openmediavault_4*.deb
 	rm -rf ./omvtmp
 	omv-initsystem
+	apt-mark hold openmediavault
         echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
         echo "Installation Complete! Go to http://ip to enjoy OMV!"
         exit
