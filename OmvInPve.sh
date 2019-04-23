@@ -17,6 +17,7 @@ while [ true ]
      case "$x" in
        y | yes ) 
 	echo "deb http://packages.openmediavault.org/public arrakis main" > /etc/apt/sources.list.d/openmediavault.list
+	rm openmediavault-keyring_1.0_all.deb
 	wget http://packages.openmediavault.org/public/pool/main/o/openmediavault-keyring/openmediavault-keyring_1.0_all.deb 
 	dpkg -i openmediavault-keyring_1.0_all.deb
 	apt-get update
@@ -111,6 +112,7 @@ while [ true ]
 	dpkg --force-all -i openmediavault_4.1.22-1_all.deb
         echo "安装完成，下面初始化OMV!"
         echo "Installation Complete, now init the OMV!"
+	rm ./openmediavault_4*.deb
 	rm -rf ./omvtmp
 	omv-initsystem
         echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
