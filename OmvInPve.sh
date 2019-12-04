@@ -139,8 +139,9 @@ while [ true ]
             elif [ $ver = "6.0" ];then
                 echo "您的系统是：$pve, 您将安装OMV5"
                 echo -n "Your OS：$pve, you will install OMV5"
-                cat <<EOF >> /etc/apt/sources.list.d/openmediavault.list
-deb https://packages.openmediavault.org/public usul main
+                cat <<EOF > /etc/apt/sources.list.d/openmediavault.list
+deb https://package.openmediavault.org/public arrakis main
+#deb https://package.openmediavault.org/public usul main
 EOF
                 wget -O "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc" https://packages.openmediavault.org/public/archive.key
                 apt-key add "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc"
