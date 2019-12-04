@@ -140,7 +140,7 @@ while [ true ]
                 echo "您的系统是：$pve, 您将安装OMV5"
                 echo -n "Your OS：$pve, you will install OMV5"
                 cat <<EOF > /etc/apt/sources.list.d/openmediavault.list
-deb http://package.openmediavault.org/public arrakis main
+deb http://packages.openmediavault.org/public arrakis main
 #deb https://package.openmediavault.org/public usul main
 EOF
                 wget -O "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc" https://packages.openmediavault.org/public/archive.key
