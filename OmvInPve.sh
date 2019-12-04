@@ -12,11 +12,12 @@ while [ true ]
         echo "如果您使用的是zfs文件系统，请务必给rpool做个快照，如果有问题可以回滚快照后重启系统!"
         echo "If you use zfs rpool for your system, please make sure your rpool has made a snapshot!"
         echo "您的系统是：$pve, 您将安装OMV, 是否继续?(y/n)"
-        echo -n "Your OS：$pve, you will install OMV4, continue?(y/n)"
+        echo -n "Your OS：$pve, you will install OMV, continue?(y/n)"
         read x
         case "$x" in
         y | yes ) 
             echo "您的系统是：$pve, 您将安装OMV4"
+            echo -n "Your OS：$pve, you will install OMV4"
             echo "deb http://packages.openmediavault.org/public arrakis main" > /etc/apt/sources.list.d/openmediavault.list
             rm openmediavault-keyring_1.0_all.deb
             wget http://packages.openmediavault.org/public/pool/main/o/openmediavault-keyring/openmediavault-keyring_1.0_all.deb 
@@ -80,6 +81,7 @@ while [ true ]
                 exit
             elif [ $ver = "5.4" ];then
                 echo "您的系统是：$pve, 您将安装OMV4"
+                echo -n "Your OS：$pve, you will install OMV4"
                 apt-get autoremove openmediavault
                 apt-get -f -y install apparmor attr bridge-utils ceph-common ceph-fuse cifs-utils corosync criu cstream dtach ebtables \
                 faketime file fonts-font-awesome genisoimage glusterfs-client glusterfs-common ipset libacl1-dev \
@@ -136,6 +138,7 @@ while [ true ]
                 exit
             elif [ $ver = "6.0" ];then
                 echo "您的系统是：$pve, 您将安装OMV5"
+                echo -n "Your OS：$pve, you will install OMV5"
                 cat <<EOF >> /etc/apt/sources.list.d/openmediavault.list
 deb https://packages.openmediavault.org/public usul main
 EOF
