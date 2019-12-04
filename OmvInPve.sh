@@ -143,6 +143,9 @@ while [ true ]
 #deb http://packages.openmediavault.org/public arrakis main
 deb https://packages.openmediavault.org/public usul main
 EOF
+                export LANG=C.UTF-8
+                export DEBIAN_FRONTEND=noninteractive
+                export APT_LISTCHANGES_FRONTEND=none
                 wget -O "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc" https://packages.openmediavault.org/public/archive.key
                 apt-key add "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc"
                 apt-get update
