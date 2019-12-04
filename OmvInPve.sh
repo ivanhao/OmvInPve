@@ -154,6 +154,23 @@ EOF
                 lsb-release sshpass samba samba-common-bin wsdd avahi-daemon libnss-mdns  acpid beep php-bcmath rrdtool collectd anacron \
                 cron-apt quota php-xml quotatool liblocale-po-perl proftpd-mod-vroot libjavascript-minifier-xs-perl xmlstarlet parted nginx \
                 pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq ntp python3-netifaces python3-lxml
+                rm ./openmediavault_4*.deb
+                wget http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_4.1.22-1_all.deb 
+                dpkg-deb -x openmediavault_4.1.22-1_all.deb omvtmp 
+                dpkg-deb --control openmediavault_4.1.22-1_all.deb omvtmp/DEBIAN 
+                sed -i "s/watchdog, //g" omvtmp/DEBIAN/control 
+                dpkg -b omvtmp openmediavault_4.1.22-1_all.deb 
+                dpkg --force-all -i openmediavault_4.1.22-1_all.deb
+                echo "安装完成，下面初始化OMV!"
+                echo "Installation Complete, now init the OMV!"
+                rm ./openmediavault_4*.deb
+                rm -rf ./omvtmp
+                omv-initsystem
+                apt-mark hold openmediavault
+                echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
+                echo "Installation Complete! Go to http://ip to enjoy OMV!"
+                exit
+ 
             else
                 echo "你的proxmox ve版本不是5.3/5.4/6.0，不建议安装，即将退出。"
                 echo "Your proxmox ve version is not 5.3/5.4/6.0, it may harm your system, now quit."
