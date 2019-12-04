@@ -153,7 +153,8 @@ EOF
                 acl resolvconf jfsutils ntfs-3g sdparm mdadm libsasl2-modules python3-dbus cpufrequtils uuid nfs-kernel-server proftpd-basic \
                 lsb-release sshpass samba samba-common-bin wsdd avahi-daemon libnss-mdns  acpid beep php-bcmath rrdtool collectd anacron \
                 cron-apt quota php-xml quotatool liblocale-po-perl proftpd-mod-vroot libjavascript-minifier-xs-perl xmlstarlet parted nginx \
-                pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq ntp python3-netifaces python3-lxml monit
+                pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq ntp python3-netifaces python3-lxml 
+                apt-get -f -y install monit
                 rm ./openmediavault_4*.deb
                 wget http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_4.1.22-1_all.deb 
                 dpkg-deb -x openmediavault_4.1.22-1_all.deb omvtmp 
