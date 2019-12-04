@@ -153,8 +153,12 @@ EOF
                 acl resolvconf jfsutils ntfs-3g sdparm mdadm libsasl2-modules python3-dbus cpufrequtils uuid nfs-kernel-server proftpd-basic \
                 lsb-release sshpass samba samba-common-bin wsdd avahi-daemon libnss-mdns  acpid beep php-bcmath rrdtool collectd anacron \
                 cron-apt quota php-xml quotatool liblocale-po-perl proftpd-mod-vroot libjavascript-minifier-xs-perl xmlstarlet parted nginx \
-                pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq ntp python3-netifaces python3-lxml 
-                apt-get -f -y install monit
+                pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq ntp python3-netifaces python3-lxml \
+                chrony dctrl-tools libnorm1 libpgm-5.2-0 libyaml-0-2 libzmq5 php-yaml python-click python-colorama python3-click \
+                python3-colorama python3-crypto python3-dateutil python3-distro python3-jinja2 \
+                python3-markupsafe python3-msgpack python3-psutil python3-systemd python3-tornado4 python3-yaml python3-zmq salt-common salt-minion
+                apt-get -f -y install monit 
+
                 rm ./openmediavault_4*.deb
                 #wget http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_4.1.22-1_all.deb 
                 wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.0.14-1_all.deb
@@ -163,6 +167,8 @@ EOF
                 dpkg-deb --control openmediavault_5.0.14-1_all.deb omvtmp/DEBIAN 
                 #dpkg-deb --control openmediavault_4.1.22-1_all.deb omvtmp/DEBIAN 
                 sed -i "s/watchdog, //g" omvtmp/DEBIAN/control 
+                rm omvtmp/usr/share/openmediavault/engined/module/systemdnetworkd.inc
+                rm omvtmp/usr/share/openmediavault/engined/rpc/network.inc
                 #dpkg -b omvtmp openmediavault_4.1.22-1_all.deb 
                 #dpkg --force-all -i openmediavault_4.1.22-1_all.deb
                 echo "安装完成，下面初始化OMV!"
