@@ -156,22 +156,22 @@ EOF
                 pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq ntp python3-netifaces python3-lxml 
                 apt-get -f -y install monit
                 rm ./openmediavault_4*.deb
-                #wget http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_4.1.22-1_all.deb 
-                wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.0.14-1_all.deb
-                #dpkg-deb -x openmediavault_4.1.22-1_all.deb omvtmp 
-                dpkg-deb -x openmediavault_5.0.14-1_all.deb omvtmp
-                dpkg-deb --control openmediavault_5.0.14-1_all.deb omvtmp/DEBIAN 
-                #dpkg-deb --control openmediavault_4.1.22-1_all.deb omvtmp/DEBIAN 
+                wget http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_4.1.22-1_all.deb 
+                #wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.0.14-1_all.deb
+                dpkg-deb -x openmediavault_4.1.22-1_all.deb omvtmp 
+                #dpkg-deb -x openmediavault_5.0.14-1_all.deb omvtmp
+                #dpkg-deb --control openmediavault_5.0.14-1_all.deb omvtmp/DEBIAN 
+                dpkg-deb --control openmediavault_4.1.22-1_all.deb omvtmp/DEBIAN 
                 sed -i "s/watchdog, //g" omvtmp/DEBIAN/control 
-                #dpkg -b omvtmp openmediavault_4.1.22-1_all.deb 
-                #dpkg --force-all -i openmediavault_4.1.22-1_all.deb
+                dpkg -b omvtmp openmediavault_4.1.22-1_all.deb 
+                dpkg --force-all -i openmediavault_4.1.22-1_all.deb
                 echo "安装完成，下面初始化OMV!"
                 echo "Installation Complete, now init the OMV!"
-                #rm ./openmediavault_4*.deb
-                rm ./openmediavault_5*.deb
+                rm ./openmediavault_4*.deb
+                #rm ./openmediavault_5*.deb
                 #rm -rf ./omvtmp
-                #omv-initsystem
-                #apt-mark hold openmediavault
+                omv-initsystem
+                apt-mark hold openmediavault
                 echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
                 echo "Installation Complete! Go to http://ip to enjoy OMV!"
                 exit
