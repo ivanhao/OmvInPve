@@ -155,29 +155,49 @@ EOF
                 wget -O "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc" https://packages.openmediavault.org/public/archive.key
                 apt-key add "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc"
                 apt-get update
-                apt -f -y install libjs-extjs6 php-fpm php-json php-cgi php-cli php-mbstring php-pam sudo ethtool python3-dialog \
-                acl resolvconf jfsutils ntfs-3g sdparm mdadm libsasl2-modules python3-dbus cpufrequtils uuid nfs-kernel-server proftpd-basic \
-                lsb-release sshpass samba samba-common-bin wsdd avahi-daemon libnss-mdns  acpid beep php-bcmath rrdtool collectd anacron \
-                cron-apt quota php-xml quotatool liblocale-po-perl proftpd-mod-vroot libjavascript-minifier-xs-perl xmlstarlet parted nginx \
-                pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq ntp python3-netifaces python3-lxml 
-                apt-get -f -y install monit
-                rm ./openmediavault_4*.deb
-                wget http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_4.1.22-1_all.deb 
-                #wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.0.14-1_all.deb
-                dpkg-deb -x openmediavault_4.1.22-1_all.deb omvtmp 
-                #dpkg-deb -x openmediavault_5.0.14-1_all.deb omvtmp
-                #dpkg-deb --control openmediavault_5.0.14-1_all.deb omvtmp/DEBIAN 
-                dpkg-deb --control openmediavault_4.1.22-1_all.deb omvtmp/DEBIAN 
+                apt-get --yes --auto-remove --show-upgraded \
+                --allow-downgrades --allow-change-held-packages \
+                --no-install-recommends \
+                --option Dpkg::Options::="--force-confdef" \
+                --option DPkg::Options::="--force-confold" \
+                install openmediavault-keyring
+
+                apt-get -y -f install avahi-daemon beep chrony collectd collectd-core cpufrequtils cron-apt dctrl-tools ethtool jfsutils jq \
+                libavahi-core7 libcpufreq0 libdaemon0 libfile-slurp-perl libgd3 libhiredis0.14 \
+                libjavascript-minifier-xs-perl libjbig0 libjq1 libjs-extjs6 liblocale-po-perl libmemcached11 libmemcachedutil2 \
+                libnginx-mod-http-auth-pam libnginx-mod-http-dav-ext libnginx-mod-http-echo \
+                libnginx-mod-http-geoip libnginx-mod-http-image-filter libnginx-mod-http-subs-filter libnginx-mod-http-upstream-fair \
+                libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libnorm1 \
+                libnss-mdns libntfs-3g883 libonig5 libossp-uuid16 libpcsclite1 libpgm-5.2-0 libsodium23 libtiff5 libwebp6 libxpm4 \
+                libyaml-0-2 libzmq5 mdadm monit nginx nginx-common nginx-full ntfs-3g php-bcmath \
+                php-cgi php-common php-fpm php-mbstring php-pam php-xml php-yaml php7.3-bcmath php7.3-cgi php7.3-cli php7.3-common \ 
+                php7.3-fpm php7.3-json php7.3-mbstring php7.3-opcache php7.3-readline php7.3-xml \
+                proftpd-basic proftpd-mod-vroot python-click python-colorama python-dnspython python3-click python3-colorama \
+                python3-crypto python3-dateutil python3-dbus python3-dialog python3-distro python3-jinja2 \
+                python3-lxml python3-markupsafe python3-msgpack python3-natsort python3-netifaces python3-psutil python3-pyudev \
+                python3-systemd python3-tornado4 python3-yaml python3-zmq quotatool rrdtool salt-common \
+                salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasupplicant wsdd xmlstarlet
+                rm ./openmediavault_*.deb
+                #wget http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_4.1.22-1_all.deb 
+                wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.0.14-1_all.deb
+                #dpkg-deb -x openmediavault_4.1.22-1_all.deb omvtmp 
+                dpkg-deb -x openmediavault_5.0.14-1_all.deb omvtmp
+                dpkg-deb --control openmediavault_5.0.14-1_all.deb omvtmp/DEBIAN 
+                #dpkg-deb --control openmediavault_4.1.22-1_all.deb omvtmp/DEBIAN 
                 sed -i "s/watchdog, //g" omvtmp/DEBIAN/control 
-                dpkg -b omvtmp openmediavault_4.1.22-1_all.deb 
-                dpkg --force-all -i openmediavault_4.1.22-1_all.deb
+                #rm omvtmp/usr/share/openmediavault/engined/module/
+                #dpkg -b omvtmp openmediavault_4.1.22-1_all.deb 
+                dpkg -b omvtmp openmediavault_5.0.14-1_all.deb 
+                #dpkg --force-all -i openmediavault_4.1.22-1_all.deb
+                dpkg --force-all -i openmediavault_5.0.14-1_all.deb
                 echo "安装完成，下面初始化OMV!"
                 echo "Installation Complete, now init the OMV!"
-                rm ./openmediavault_4*.deb
-                #rm ./openmediavault_5*.deb
-                #rm -rf ./omvtmp
-                omv-initsystem
-                apt-mark hold openmediavault
+                #rm ./openmediavault_4*.deb
+                rm ./openmediavault_5*.deb
+                rm -rf ./omvtmp
+                omv-confdbadm populate
+                #omv-initsystem
+                #apt-mark hold openmediavault
                 echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
                 echo "Installation Complete! Go to http://ip to enjoy OMV!"
                 exit
