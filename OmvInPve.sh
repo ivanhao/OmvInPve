@@ -170,7 +170,7 @@ EOF
                 libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libnorm1 \
                 libnss-mdns libntfs-3g883 libonig5 libossp-uuid16 libpcsclite1 libpgm-5.2-0 libsodium23 libtiff5 libwebp6 libxpm4 \
                 libyaml-0-2 libzmq5 mdadm monit nginx nginx-common nginx-full ntfs-3g php-bcmath \
-                php-cgi php-common php-fpm php-mbstring php-pam php-xml php-yaml php7.3-bcmath php7.3-cgi php7.3-cli php7.3-common \ 
+                php-cgi php-common php-fpm php-mbstring php-pam php-xml php-yaml php7.3-bcmath php7.3-cgi php7.3-cli php7.3-common \
                 php7.3-fpm php7.3-json php7.3-mbstring php7.3-opcache php7.3-readline php7.3-xml \
                 proftpd-basic proftpd-mod-vroot python-click python-colorama python-dnspython python3-click python3-colorama \
                 python3-crypto python3-dateutil python3-dbus python3-dialog python3-distro python3-jinja2 \
