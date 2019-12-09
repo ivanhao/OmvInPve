@@ -31,6 +31,7 @@ while [ true ]
             apt-get update
             rm openmediavault-keyring_1.0_all.deb
             if [ $ver = "5.3" ];then
+                apt-mark unhold openmediavault
                 apt-get autoremove openmediavault
                 apt-get -f -y install apparmor attr bridge-utils ceph-common ceph-fuse cifs-utils corosync criu cstream dtach ebtables \
 faketime file fonts-font-awesome genisoimage glusterfs-client glusterfs-common ipset libacl1-dev \
@@ -74,6 +75,9 @@ nginx pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq
                 dpkg-deb -x openmediavault_4.1.22-1_all.deb omvtmp 
                 dpkg-deb --control openmediavault_4.1.22-1_all.deb omvtmp/DEBIAN 
                 sed -i "s/watchdog, //g" omvtmp/DEBIAN/control 
+                rm omvtmp/usr/share/openmediavault/engined/module/networking.inc
+                rm omvtmp/usr/share/openmediavault/engined/rpc/network.inc
+                rm omvtmp/usr/share/openmediavault/engined/inc/60networkinterfacebackend.inc
                 dpkg -b omvtmp openmediavault_4.1.22-1_all.deb 
                 dpkg --force-all -i openmediavault_4.1.22-1_all.deb
                 echo "安装完成，下面初始化OMV!"
@@ -88,6 +92,7 @@ nginx pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq
             elif [ $ver = "5.4" ];then
                 echo "您的系统是：$pve, 您将安装OMV4"
                 echo -n "Your OS：$pve, you will install OMV4"
+                apt-mark unhold openmediavault
                 apt-get autoremove openmediavault
                 apt-get -f -y install apparmor attr bridge-utils ceph-common ceph-fuse cifs-utils corosync criu cstream dtach ebtables \
 faketime file fonts-font-awesome genisoimage glusterfs-client glusterfs-common ipset libacl1-dev \
@@ -131,6 +136,9 @@ nginx pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq
                 dpkg-deb -x openmediavault_4.1.22-1_all.deb omvtmp 
                 dpkg-deb --control openmediavault_4.1.22-1_all.deb omvtmp/DEBIAN 
                 sed -i "s/watchdog, //g" omvtmp/DEBIAN/control 
+                rm omvtmp/usr/share/openmediavault/engined/module/networking.inc
+                rm omvtmp/usr/share/openmediavault/engined/rpc/network.inc
+                rm omvtmp/usr/share/openmediavault/engined/inc/60networkinterfacebackend.inc
                 dpkg -b omvtmp openmediavault_4.1.22-1_all.deb 
                 dpkg --force-all -i openmediavault_4.1.22-1_all.deb
                 echo "安装完成，下面初始化OMV!"
@@ -145,6 +153,7 @@ nginx pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq
             elif [ $ver = "6.0" ];then
                 echo "您的系统是：$pve, 您将安装OMV5"
                 echo -n "Your OS：$pve, you will install OMV5"
+                sleep 2
                 cat <<EOF > /etc/apt/sources.list.d/openmediavault.list
 #deb http://packages.openmediavault.org/public arrakis main
 deb https://packages.openmediavault.org/public usul main
@@ -152,6 +161,8 @@ EOF
                 export LANG=C.UTF-8
                 export DEBIAN_FRONTEND=noninteractive
                 export APT_LISTCHANGES_FRONTEND=none
+                apt-mark unhold openmediavault
+                apt-get autoremove openmediavault
                 wget -O "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc" https://packages.openmediavault.org/public/archive.key
                 apt-key add "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc"
                 apt-get update
@@ -178,26 +189,20 @@ python3-lxml python3-markupsafe python3-msgpack python3-natsort python3-netiface
 python3-systemd python3-tornado4 python3-yaml python3-zmq quotatool rrdtool salt-common \
 salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasupplicant wsdd xmlstarlet
                 rm ./openmediavault_*.deb
-                #wget http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_4.1.22-1_all.deb 
                 wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.0.14-1_all.deb
-                #dpkg-deb -x openmediavault_4.1.22-1_all.deb omvtmp 
                 dpkg-deb -x openmediavault_5.0.14-1_all.deb omvtmp
                 dpkg-deb --control openmediavault_5.0.14-1_all.deb omvtmp/DEBIAN 
-                #dpkg-deb --control openmediavault_4.1.22-1_all.deb omvtmp/DEBIAN 
                 sed -i "s/watchdog, //g" omvtmp/DEBIAN/control 
-                #rm omvtmp/usr/share/openmediavault/engined/module/
-                #dpkg -b omvtmp openmediavault_4.1.22-1_all.deb 
+                rm omvtmp/usr/share/openmediavault/engined/module/systemdnetworkd.inc
+                rm omvtmp/usr/share/openmediavault/engined/rpc/network.inc
+                rm omvtmp/usr/share/openmediavault/engined/inc/60networkinterfacebackend.inc
                 dpkg -b omvtmp openmediavault_5.0.14-1_all.deb 
-                #dpkg --force-all -i openmediavault_4.1.22-1_all.deb
                 dpkg --force-all -i openmediavault_5.0.14-1_all.deb
                 echo "安装完成，下面初始化OMV!"
                 echo "Installation Complete, now init the OMV!"
-                #rm ./openmediavault_4*.deb
-                rm ./openmediavault_5*.deb
                 rm -rf ./omvtmp
                 omv-confdbadm populate
-                #omv-initsystem
-                #apt-mark hold openmediavault
+                apt-mark hold openmediavault
                 echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
                 echo "Installation Complete! Go to http://ip to enjoy OMV!"
                 exit
