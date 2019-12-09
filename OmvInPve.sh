@@ -193,6 +193,25 @@ salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasuppli
     rm -rf ./omvtmp
     omv-confdbadm populate
     apt-mark hold openmediavault
+    systemctl unmask openmediavault-beep-down.service
+    systemctl unmask openmediavault-beep-up.service
+    systemctl unmask openmediavault-cleanup-monit.service
+    systemctl unmask openmediavault-cleanup-php.service
+    systemctl unmask openmediavault-engined.service
+    systemctl unmask openmediavault-issue.service
+    systemctl enable openmediavault-beep-down.service
+    systemctl enable openmediavault-beep-up.service
+    systemctl enable openmediavault-cleanup-monit.service
+    systemctl enable openmediavault-cleanup-php.service
+    systemctl enable openmediavault-engined.service
+    systemctl enable openmediavault-issue.service
+    systemctl start openmediavault-beep-down.service
+    systemctl start openmediavault-beep-up.service
+    systemctl start openmediavault-cleanup-monit.service
+    systemctl start openmediavault-cleanup-php.service
+    systemctl start openmediavault-engined.service
+    systemctl start openmediavault-issue.service
+
 }
 
 while [ true ] 
