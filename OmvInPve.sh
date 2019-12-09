@@ -192,6 +192,8 @@ python3-crypto python3-dateutil python3-dbus python3-dialog python3-distro pytho
 python3-lxml python3-markupsafe python3-msgpack python3-natsort python3-netifaces python3-psutil python3-pyudev \
 python3-systemd python3-tornado4 python3-yaml python3-zmq quotatool rrdtool salt-common \
 salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasupplicant wsdd xmlstarlet
+                apt-get -y -f install acl anacron libparted2 libsasl2-modules nfs-kernel-server parted
+                apt-get -f install
                 rm ./openmediavault_*.deb
                 wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.0.14-1_all.deb
                 dpkg-deb -x openmediavault_5.0.14-1_all.deb omvtmp
