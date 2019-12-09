@@ -186,6 +186,8 @@ salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasuppli
     rm omvtmp/usr/share/openmediavault/engined/inc/60networkinterfacebackend.inc
     dpkg -b omvtmp openmediavault_5.0.14-1_all.deb 
     dpkg --force-all -i openmediavault_5.0.14-1_all.deb
+    apt-get -y -f install
+    dpkg --force-all -i openmediavault_5.0.14-1_all.deb
     echo "安装完成，下面初始化OMV!"
     echo "Installation Complete, now init the OMV!"
     rm -rf ./omvtmp
@@ -221,7 +223,6 @@ while [ true ]
                 echo "Installation Complete! Go to http://ip to enjoy OMV!"
                 exit
             elif [ $ver = "6.0" ];then
-                pve60
                 pve60
                 echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
                 echo "Installation Complete! Go to http://ip to enjoy OMV!"
