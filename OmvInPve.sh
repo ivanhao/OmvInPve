@@ -4,8 +4,11 @@ ver=`/usr/bin/pveversion|awk -F'/' 'NR==1{print $2}'|awk -F'-' '{print $1}'`
 pve=$OS$ver
 if [ `export|grep 'LC_ALL'|wc -l` = 0 ];then
     if [ `grep "LC_ALL" /etc/profile|wc -l` = 0 ];then
-        echo "export LC_ALL=en_US.UTF-8" >> /etc/profile
+        echo "export LANG=C.UTF-8" >> /etc/profile
+        echo "export DEBIAN_FRONTEND=noninteractive" >> /etc/profile
+        echo "export APT_LISTCHANGES_FRONTEND=none" >> /etc/profile
         source /etc/profile
+        ./OmvInPve.sh
     fi
 fi
 if [ "$OS" != "pve" ];then
@@ -158,9 +161,6 @@ nginx pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq
 #deb http://packages.openmediavault.org/public arrakis main
 deb https://packages.openmediavault.org/public usul main
 EOF
-                export LANG=C.UTF-8
-                export DEBIAN_FRONTEND=noninteractive
-                export APT_LISTCHANGES_FRONTEND=none
                 apt-mark unhold openmediavault
                 apt-get autoremove openmediavault
                 wget -O "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc" https://packages.openmediavault.org/public/archive.key
