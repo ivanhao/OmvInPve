@@ -2,19 +2,18 @@
 OS=`/usr/bin/pveversion|awk -F'-' 'NR==1{print $1}'`
 ver=`/usr/bin/pveversion|awk -F'/' 'NR==1{print $2}'|awk -F'-' '{print $1}'`
 pve=$OS$ver
-if [ `export|grep 'LC_ALL'|wc -l` = 0 ] || [ `export|grep LC_ALL |grep -Eo '\".*\"'` = ''];then
-    if [ `grep "LC_ALL" /etc/profile|wc -l` = 0 ];then
-        echo "export LANG=C.UTF-8" >> /etc/profile
-        echo "export DEBIAN_FRONTEND=noninteractive" >> /etc/profile
-        echo "export APT_LISTCHANGES_FRONTEND=none" >> /etc/profile
-        source /etc/profile
-        export LANG=C.UTF-8
-        export DEBIAN_FRONTEND=noninteractive
-        export APT_LISTCHANGES_FRONTEND=none
-        exit && ./OmvInPve.sh
-    else
-        source /etc/profile
-    fi
+if [ `grep "LC_ALL" /etc/profile|wc -l` = 0 ];then
+    echo "export LANG=C.UTF-8" >> /etc/profile
+    echo "export LC_ALL=C.UTF-8" >> /etc/profile
+    echo "export DEBIAN_FRONTEND=noninteractive" >> /etc/profile
+    echo "export APT_LISTCHANGES_FRONTEND=none" >> /etc/profile
+    source /etc/profile
+    export LANG=C.UTF-8
+    export LC_ALL=C.UTF-8
+    export DEBIAN_FRONTEND=noninteractive
+    export APT_LISTCHANGES_FRONTEND=none
+else
+    source /etc/profile
 fi
 if [ "$OS" != "pve" ];then
     echo "您的系统不是Proxmox VE, 无法安装，马上退出!"
