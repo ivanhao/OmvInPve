@@ -1,4 +1,4 @@
->This is a omv4 install in proxmox ve 5.3/5.4 shell script.
+>This is a omv4 install in proxmox ve 5.3/5.4/6.0 shell script.
 
 ## install guide ##
 
@@ -18,7 +18,7 @@ rollback your zfs rpool's snapshot and reboot.
 
 ***
 
->这是一个在proxmox ve 5.3/5.4中安装OMV的脚本
+>这是一个在proxmox ve 5.3/5.4/6.0 中安装OMV的脚本
 
 ## 安装说明 ##
 #### 感谢“proxmox研究”群的  灬心海ζ丶 提供的安装方式，我只是在他的基础上整理了一键安装的脚本。我是群里的龙天，如果这个脚本帮到你了，麻烦点一下右上角的star小星星^_^
