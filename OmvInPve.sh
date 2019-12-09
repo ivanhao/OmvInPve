@@ -162,7 +162,6 @@ nginx pm-utils wpasupplicant samba-vfs-modules python3-pyudev python3-natsort jq
                 echo -n "Your OS：$pve, you will install OMV5"
                 sleep 2
                 cat <<EOF > /etc/apt/sources.list.d/openmediavault.list
-#deb http://packages.openmediavault.org/public arrakis main
 deb https://packages.openmediavault.org/public usul main
 EOF
                 apt-mark unhold openmediavault
