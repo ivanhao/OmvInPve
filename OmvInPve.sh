@@ -1,13 +1,13 @@
 #!/bin/bash
 if [ `grep "LC_ALL" /etc/profile|wc -l` = 0 ];then
-    echo "export LANG=C.UTF-8" >> /etc/profile
-    echo "export LC_ALL=C.UTF-8" >> /etc/profile
-    echo "export DEBIAN_FRONTEND=noninteractive" >> /etc/profile
-    echo "export APT_LISTCHANGES_FRONTEND=none" >> /etc/profile
+    echo "export LANG=\"C.UTF-8\"" >> /etc/profile
+    echo "export LC_ALL=\"C.UTF-8\"" >> /etc/profile
+    echo "export DEBIAN_FRONTEND=\"noninteractive\"" >> /etc/profile
+    echo "export APT_LISTCHANGES_FRONTEND=\"none\"" >> /etc/profile
     source /etc/profile
-    export LANG=C.UTF-8
-    export LC_ALL=C.UTF-8
-    export DEBIAN_FRONTEND=noninteractive
+    export LANG="C.UTF-8"
+    export LC_ALL="C.UTF-8"
+    export DEBIAN_FRONTEND="noninteractive"
     export APT_LISTCHANGES_FRONTEND=none
 else
     source /etc/profile
