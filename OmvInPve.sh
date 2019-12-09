@@ -1,7 +1,4 @@
 #!/bin/bash
-OS=`/usr/bin/pveversion|awk -F'-' 'NR==1{print $1}'`
-ver=`/usr/bin/pveversion|awk -F'/' 'NR==1{print $2}'|awk -F'-' '{print $1}'`
-pve=$OS$ver
 if [ `grep "LC_ALL" /etc/profile|wc -l` = 0 ];then
     echo "export LANG=C.UTF-8" >> /etc/profile
     echo "export LC_ALL=C.UTF-8" >> /etc/profile
@@ -15,6 +12,9 @@ if [ `grep "LC_ALL" /etc/profile|wc -l` = 0 ];then
 else
     source /etc/profile
 fi
+OS=`/usr/bin/pveversion|awk -F'-' 'NR==1{print $1}'`
+ver=`/usr/bin/pveversion|awk -F'/' 'NR==1{print $2}'|awk -F'-' '{print $1}'`
+pve=$OS$ver
 if [ "$OS" != "pve" ];then
     echo "您的系统不是Proxmox VE, 无法安装，马上退出!"
     echo "Your OS is not Proxmox VE.Now quit!"
