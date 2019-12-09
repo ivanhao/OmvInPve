@@ -9,6 +9,8 @@ if [ `export|grep 'LC_ALL'|wc -l` = 0 ];then
         echo "export APT_LISTCHANGES_FRONTEND=none" >> /etc/profile
         source /etc/profile
         exit && ./OmvInPve.sh
+    else
+        source /etc/profile
     fi
 fi
 if [ "$OS" != "pve" ];then
