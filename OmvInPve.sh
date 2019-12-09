@@ -2,7 +2,7 @@
 OS=`/usr/bin/pveversion|awk -F'-' 'NR==1{print $1}'`
 ver=`/usr/bin/pveversion|awk -F'/' 'NR==1{print $2}'|awk -F'-' '{print $1}'`
 pve=$OS$ver
-if [ `export|grep 'LC_ALL'|wc -l` = 0 ];then
+if [ `export|grep 'LC_ALL'|wc -l` = 0 ] || [ `export|grep LC_ALL |grep -Eo '\".*\"'` = '""'];then
     if [ `grep "LC_ALL" /etc/profile|wc -l` = 0 ];then
         echo "export LANG=C.UTF-8" >> /etc/profile
         echo "export DEBIAN_FRONTEND=noninteractive" >> /etc/profile
