@@ -8,6 +8,9 @@ if [ `export|grep 'LC_ALL'|wc -l` = 0 ];then
         echo "export DEBIAN_FRONTEND=noninteractive" >> /etc/profile
         echo "export APT_LISTCHANGES_FRONTEND=none" >> /etc/profile
         source /etc/profile
+        export LANG=C.UTF-8
+        export DEBIAN_FRONTEND=noninteractive
+        export APT_LISTCHANGES_FRONTEND=none
         exit && ./OmvInPve.sh
     else
         source /etc/profile
