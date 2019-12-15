@@ -246,6 +246,11 @@ while [ true ]
                 echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
                 echo "Installation Complete! Go to http://ip to enjoy OMV!"
                 exit
+            elif [ $ver = "6.1" ];then
+                pve60
+                echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
+                echo "Installation Complete! Go to http://ip to enjoy OMV!"
+                exit
             else
                 echo "你的proxmox ve版本不是5.3/5.4/6.0，不建议安装，即将退出。"
                 echo "Your proxmox ve version is not 5.3/5.4/6.0, it may harm your system, now quit."
