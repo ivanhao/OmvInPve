@@ -246,7 +246,7 @@ while [ true ]
                 echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
                 echo "Installation Complete! Go to http://ip to enjoy OMV!"
                 exit
-            elif [ $ver = "-6.1" ];then
+            elif [ $ver = "6.1" ];then
                 pve60
                 echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
                 echo "Installation Complete! Go to http://ip to enjoy OMV!"
