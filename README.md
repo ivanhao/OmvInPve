@@ -1,5 +1,10 @@
 >This is a omv4 install in proxmox ve 5.3/5.4/6.0 shell script.
 
+## new systemd-nspawn ##
+
+add new systemd-nspawn version in [systemd-v1.0](https://github.com/ivanhao/OmvInPve/tree/systemd-v1.0)
+use `./install.sh` to install.
+
 ## install guide ##
 
 1. clone or download the code to your proxmox ve. `git clone https://github.com/ivanhao/OmvInPve.git`
@@ -19,6 +24,12 @@ rollback your zfs rpool's snapshot and reboot.
 ***
 
 >这是一个在proxmox ve 5.3/5.4/6.0 中安装OMV的脚本
+
+## 新的systemd-nspawn版本 ##
+
+增加一个新的systemd-nspawn版本： [systemd-v1.0](https://github.com/ivanhao/OmvInPve/tree/systemd-v1.0)
+好处是不污染主系统，随用随抛,与主系统隔离。
+用`./install.sh`来安装。
 
 ## 安装说明 ##
 #### 感谢“proxmox研究”群的  灬心海ζ丶 提供的安装方式，我只是在他的基础上整理了一键安装的脚本。我是群里的龙天，如果这个脚本帮到你了，麻烦点一下右上角的star小星星^_^
