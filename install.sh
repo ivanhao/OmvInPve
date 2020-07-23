@@ -6,7 +6,7 @@ config(){
 	echo "downloading bin ..."
 	wget -c --no-check-certificate --timeout 15 --waitretry 5 --tries 5 $url 
 	echo "downloaded"
-        tar -xvjf omvInPve.tar.bz2
+        tar -xjf omvInPve.tar.bz2
         cd omvInPve
         chmod +x ./*.sh
         ./install.sh
