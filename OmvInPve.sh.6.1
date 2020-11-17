@@ -1,6 +1,4 @@
 #!/bin/bash
-
-#!/bin/bash
 if [ `grep "LC_ALL" /etc/profile|wc -l` = 0 ];then
     echo "export LANG=\"C.UTF-8\"" >> /etc/profile
     echo "export LC_ALL=\"C.UTF-8\"" >> /etc/profile
@@ -216,82 +214,6 @@ salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasuppli
 
 }
 
-
-pve62(){
-    echo "您的系统是：$pve, 您将安装OMV5"
-    echo -n "Your OS：$pve, you will install OMV5"
-    sleep 2
-    cat <<EOF > /etc/apt/sources.list.d/openmediavault.list
-deb https://packages.openmediavault.org/public usul main
-EOF
-    apt-mark unhold openmediavault
-    apt-get -y autoremove openmediavault
-    wget -O "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc" https://packages.openmediavault.org/public/archive.key
-    apt-key add "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc"
-    apt-get update
-    apt-get --yes --auto-remove --show-upgraded \
-    --allow-downgrades --allow-change-held-packages \
-    --no-install-recommends \
-    --option Dpkg::Options::="--force-confdef" \
-    --option DPkg::Options::="--force-confold" \
-    install openmediavault-keyring
-
-    apt-get -y -f install avahi-daemon beep chrony collectd collectd-core cpufrequtils cron-apt dctrl-tools ethtool jfsutils jq \
-libavahi-core7 libcpufreq0 libdaemon0 libfile-slurp-perl libgd3 libhiredis0.14 \
-libjavascript-minifier-xs-perl libjbig0 libjq1 libjs-extjs6 liblocale-po-perl libmemcached11 libmemcachedutil2 \
-libnginx-mod-http-auth-pam libnginx-mod-http-dav-ext libnginx-mod-http-echo \
-libnginx-mod-http-geoip libnginx-mod-http-image-filter libnginx-mod-http-subs-filter libnginx-mod-http-upstream-fair \
-libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libnorm1 \
-libnss-mdns libntfs-3g883 libonig5 libossp-uuid16 libpcsclite1 libpgm-5.2-0 libsodium23 libtiff5 libwebp6 libxpm4 \
-proftpd-basic proftpd-mod-vroot python-click python-colorama python-dnspython python3-click python3-colorama \
-python3-crypto python3-dateutil python3-dbus python3-dialog python3-distro python3-jinja2 \
-python3-lxml python3-markupsafe python3-msgpack python3-natsort python3-netifaces python3-psutil python3-pyudev \
-python3-systemd python3-tornado4 python3-yaml python3-zmq quotatool rrdtool salt-common \
-libyaml-0-2 libzmq5 mdadm monit nginx nginx-common nginx-full ntfs-3g php-bcmath \
-php-cgi php-common php-fpm php-mbstring php-pam php-xml php-yaml php7.3-bcmath php7.3-cgi php7.3-cli php7.3-common \
-php7.3-fpm php7.3-json php7.3-mbstring php7.3-opcache php7.3-readline php7.3-xml \
-salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasupplicant wsdd xmlstarlet
-    apt-get -y -f install acl anacron libparted2 libsasl2-modules nfs-kernel-server parted
-    apt-get -y -f install
-    rm ./openmediavault_*.deb
-    wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.5.16-1_all.deb
-    dpkg-deb -x openmediavault_5.5.16-1_all.deb omvtmp
-    dpkg-deb --control openmediavault_5.5.16-1_all.deb omvtmp/DEBIAN 
-    sed -i "s/watchdog, //g" omvtmp/DEBIAN/control 
-    rm omvtmp/usr/share/openmediavault/engined/module/systemdnetworkd.inc
-    rm omvtmp/usr/share/openmediavault/engined/rpc/network.inc
-    rm omvtmp/usr/share/openmediavault/engined/inc/60networkinterfacebackend.inc
-    dpkg -b omvtmp openmediavault_5.5.16-1_all.deb 
-    dpkg --force-all -i openmediavault_5.5.16-1_all.deb
-    apt-get -y -f install
-    dpkg --force-all -i openmediavault_5.5.16-1_all.deb
-    dpkg -i openmediavault_5.5.16-1_all.deb
-    echo "安装完成，下面初始化OMV!"
-    echo "Installation Complete, now init the OMV!"
-    rm -rf ./omvtmp
-    omv-confdbadm populate
-    apt-mark hold openmediavault
-    systemctl unmask openmediavault-beep-down.service
-    systemctl unmask openmediavault-beep-up.service
-    systemctl unmask openmediavault-cleanup-monit.service
-    systemctl unmask openmediavault-cleanup-php.service
-    systemctl unmask openmediavault-engined.service
-    systemctl unmask openmediavault-issue.service
-    systemctl enable openmediavault-beep-down.service
-    systemctl enable openmediavault-beep-up.service
-    systemctl enable openmediavault-cleanup-monit.service
-    systemctl enable openmediavault-cleanup-php.service
-    systemctl enable openmediavault-engined.service
-    systemctl enable openmediavault-issue.service
-    systemctl start openmediavault-beep-down.service
-    systemctl start openmediavault-beep-up.service
-    systemctl start openmediavault-cleanup-monit.service
-    systemctl start openmediavault-cleanup-php.service
-    systemctl start openmediavault-engined.service
-    systemctl start openmediavault-issue.service
-
-}
-
 while [ true ] 
     do
         echo "如果您使用的是zfs文件系统，请务必给rpool做个快照，如果有问题可以回滚快照后重启系统!"
@@ -326,11 +248,6 @@ while [ true ]
                 exit
             elif [ $ver = "6.1" ];then
                 pve60
-                echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
-                echo "Installation Complete! Go to http://ip to enjoy OMV!"
-                exit
-            elif [ $ver = "6.2" ];then
-                pve62
                 echo "如果没有意外，安装完成! 浏览器打开http://ip 去试试您的OMV!"
                 echo "Installation Complete! Go to http://ip to enjoy OMV!"
                 exit
