@@ -215,8 +215,6 @@ salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasuppli
     systemctl start openmediavault-issue.service
 
 }
-
-
 pve62(){
     echo "您的系统是：$pve, 您将安装OMV5"
     echo -n "Your OS：$pve, you will install OMV5"
@@ -226,6 +224,11 @@ deb https://packages.openmediavault.org/public usul main
 EOF
     apt-mark unhold openmediavault
     apt-get -y autoremove openmediavault
+#添加#
+    wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.5.16-1_all.deb
+    dpkg -i openmediavault_5.5.16-1_all.deb
+    apt-get -y -f install
+######
     wget -O "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc" https://packages.openmediavault.org/public/archive.key
     apt-key add "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc"
     apt-get update
@@ -253,8 +256,8 @@ php7.3-fpm php7.3-json php7.3-mbstring php7.3-opcache php7.3-readline php7.3-xml
 salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasupplicant wsdd xmlstarlet
     apt-get -y -f install acl anacron libparted2 libsasl2-modules nfs-kernel-server parted
     apt-get -y -f install
-    rm ./openmediavault_*.deb
-    wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.5.16-1_all.deb
+#    rm ./openmediavault_*.deb
+#    wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.5.16-1_all.deb
     dpkg-deb -x openmediavault_5.5.16-1_all.deb omvtmp
     dpkg-deb --control openmediavault_5.5.16-1_all.deb omvtmp/DEBIAN 
     sed -i "s/watchdog, //g" omvtmp/DEBIAN/control 
@@ -264,8 +267,8 @@ salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasuppli
     dpkg -b omvtmp openmediavault_5.5.16-1_all.deb 
     dpkg --force-all -i openmediavault_5.5.16-1_all.deb
     apt-get -y -f install
-    dpkg --force-all -i openmediavault_5.5.16-1_all.deb
-    dpkg -i openmediavault_5.5.16-1_all.deb
+#    dpkg --force-all -i openmediavault_5.5.16-1_all.deb
+#    dpkg -i openmediavault_5.5.16-1_all.deb
     echo "安装完成，下面初始化OMV!"
     echo "Installation Complete, now init the OMV!"
     rm -rf ./omvtmp
@@ -289,8 +292,11 @@ salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasuppli
     systemctl start openmediavault-cleanup-php.service
     systemctl start openmediavault-engined.service
     systemctl start openmediavault-issue.service
-
+#添加#
+    dpkg -i openmediavault_5.5.16-1_all.deb
+######
 }
+
 
 while [ true ] 
     do
