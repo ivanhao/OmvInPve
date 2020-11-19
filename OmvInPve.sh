@@ -225,8 +225,8 @@ EOF
     apt-mark unhold openmediavault
     apt-get -y autoremove openmediavault
 #添加#
-    wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.5.16-1_all.deb
-    dpkg -i openmediavault_5.5.16-1_all.deb
+    wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.5.17-2_all.deb
+    dpkg -i openmediavault_5.5.17-2_all.deb
     apt-get -y -f install
 ######
     wget -O "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc" https://packages.openmediavault.org/public/archive.key
@@ -257,18 +257,18 @@ salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasuppli
     apt-get -y -f install acl anacron libparted2 libsasl2-modules nfs-kernel-server parted
     apt-get -y -f install
 #    rm ./openmediavault_*.deb
-#    wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.5.16-1_all.deb
-    dpkg-deb -x openmediavault_5.5.16-1_all.deb omvtmp
-    dpkg-deb --control openmediavault_5.5.16-1_all.deb omvtmp/DEBIAN 
+#    wget -c http://packages.openmediavault.org/public/pool/main/o/openmediavault/openmediavault_5.5.17-2_all.deb
+    dpkg-deb -x openmediavault_5.5.17-2_all.deb omvtmp
+    dpkg-deb --control openmediavault_5.5.17-2_all.deb omvtmp/DEBIAN 
     sed -i "s/watchdog, //g" omvtmp/DEBIAN/control 
     rm omvtmp/usr/share/openmediavault/engined/module/systemdnetworkd.inc
     rm omvtmp/usr/share/openmediavault/engined/rpc/network.inc
     rm omvtmp/usr/share/openmediavault/engined/inc/60networkinterfacebackend.inc
-    dpkg -b omvtmp openmediavault_5.5.16-1_all.deb 
-    dpkg --force-all -i openmediavault_5.5.16-1_all.deb
+    dpkg -b omvtmp openmediavault_5.5.17-2_all.deb 
+    dpkg --force-all -i openmediavault_5.5.17-2_all.deb
     apt-get -y -f install
-#    dpkg --force-all -i openmediavault_5.5.16-1_all.deb
-#    dpkg -i openmediavault_5.5.16-1_all.deb
+#    dpkg --force-all -i openmediavault_5.5.17-2_all.deb
+#    dpkg -i openmediavault_5.5.17-2_all.deb
     echo "安装完成，下面初始化OMV!"
     echo "Installation Complete, now init the OMV!"
     rm -rf ./omvtmp
@@ -293,7 +293,7 @@ salt-minion samba samba-vfs-modules sdparm sshpass sudo tdb-tools uuid wpasuppli
     systemctl start openmediavault-engined.service
     systemctl start openmediavault-issue.service
 #添加#
-    dpkg -i openmediavault_5.5.16-1_all.deb
+    dpkg -i openmediavault_5.5.17-2_all.deb
 ######
 }
 
