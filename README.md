@@ -1,3 +1,5 @@
+# 注意：此脚本为测试用途，强烈不建议直接在pve中安装omv，请使用systemd-nspawn版本： [systemd-v1.0](https://github.com/ivanhao/OmvInPve/tree/systemd-v1.0)或在pve的虚拟机中安装omv
+
 >This is a omv4 install in proxmox ve 5.3/5.4/6.0 shell script.
 
 ## new systemd-nspawn ##
